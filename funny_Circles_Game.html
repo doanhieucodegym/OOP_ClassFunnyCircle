@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Funny circles</title>
+</head>
+<body>
+<!--b1 :tao  ther Canvas trong HTML-->
+<canvas id ="myCanvas" width="600px" height="600px"style="border: 1px solid blue"></canvas>
+<!--b2 : ve hinh tron do gian kcih thuoc co dinh-->
+<script>
+    function Circle(x,y,radius) {
+        this.x =x;
+        this.y =y;
+        this.radius =radius;
+    }
+    // đoạn mã  trên  ,chúng ta sử dụng phương thức arc() để vẽ một hình tròn ,cx va cy, tọa dộ hình tròn
+    // r là  bán kính
+    //bước 3 vẽ hình  ngẫu  nhiên
+    // tao biến  tao  đường  kính random
+    //buoc4 tao  hàm lấy số ngẫu nhiên,  khi rerturn trả về
+    function getRandomHex() {
+        return Math.floor(Math.random()*255);
+    }
+    //bươc 5:Lấy  màu ngẫn  nhiên
+    function getRandomColor() {
+        let red = getRandomHex();
+        let green = getRandomHex();
+        let blue = getRandomHex();
+        //ep kiểu sô ra màu
+        return "rgb("+red+ ","+ blue + "," +green+")";
+
+    }
+
+    function createCircle(){
+        //vẽ ở  mô hình  2d :
+        let txc = document.getElementById("myCanvas").getContext("2d");
+     // tao  radius random
+        let radius =Math.floor(Math.random()* 200);
+        //lấy  màu  ngẫu  nhiên
+        let color = getRandomColor();
+        //đặt tên biến lấy  giá trị của đối tượng Circle
+        //taoj vi tri  ngau nhien
+        let x=Math.random()* window.innerHeight;
+        let y =Math.random() * window.innerWidth;
+        let circle = new Circle(x,y,radius);
+        txc.beginPath();//khai báo vẽ đường thẳng mới
+        txc.arc(circle.x,circle.y,circle.radius, 0,2 *Math.PI)//vẽ đường cung
+        txc.fillStyle =color;//tao  màu cho hinh tròn
+        txc.fill();//to màu bên trong hình  tron , để mặc định  là màu đen
+    }
+    function createMultipleCircle() {
+        for(var i =0 ; i<30;i++){
+            createCircle();
+        }
+    }
+
+ createMultipleCircle();
+
+
+</script>
+</body>
+</html>
